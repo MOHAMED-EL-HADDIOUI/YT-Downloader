@@ -1,67 +1,67 @@
 # YT Downloader
 
-YT Downloader est une application web complète qui permet aux utilisateurs de télécharger des vidéos ou de l'audio à partir de YouTube dans différents formats (MP4 pour les vidéos et MP3 pour l'audio) tout en garantissant une expérience rapide et sécurisée. Ce projet est divisé en deux parties : un backend utilisant Flask et un frontend utilisant React.
+YT Downloader est une application web complï¿½te qui permet aux utilisateurs de tï¿½lï¿½charger des vidï¿½os ou de l'audio ï¿½ partir de YouTube dans diffï¿½rents formats (MP4 pour les vidï¿½os et MP3 pour l'audio) tout en garantissant une expï¿½rience rapide et sï¿½curisï¿½e. Ce projet est divisï¿½ en deux parties : un backend utilisant Flask et un frontend utilisant React.
 
 ![YT Downloader Interface](Page.PNG)
 
 ---
 
-## Fonctionnalités
+## Fonctionnalitï¿½s
 
-- **Téléchargement rapide et sécurisé** : Téléchargez vos fichiers sans risque.
+- **Tï¿½lï¿½chargement rapide et sï¿½curisï¿½** : Tï¿½lï¿½chargez vos fichiers sans risque.
 - **Formats disponibles** : 
-  - Vidéo (MP4 jusqu'à 4K)
-  - Audio (MP3 jusqu'à 192 kbps)
-- **Compatibilité multiplateforme** : Fonctionne sur tous les appareils, y compris ordinateurs, tablettes, et smartphones.
-- **Haute qualité** : Téléchargement en résolution maximale disponible.
+  - Vidï¿½o (MP4 jusqu'ï¿½ 4K)
+  - Audio (MP3 jusqu'ï¿½ 192 kbps)
+- **Compatibilitï¿½ multiplateforme** : Fonctionne sur tous les appareils, y compris ordinateurs, tablettes, et smartphones.
+- **Haute qualitï¿½** : Tï¿½lï¿½chargement en rï¿½solution maximale disponible.
 
 ---
 
 ## Structure du projet
 
-Le projet est divisé en deux principaux répertoires :
+Le projet est divisï¿½ en deux principaux rï¿½pertoires :
 
 ### Backend
 - **Technologie** : Python (Flask)
-- **Fonctionnalités clés** :
-  - API REST pour le téléchargement de vidéos et d'audio.
-  - Utilisation de `yt-dlp` pour l'extraction et le traitement des fichiers multimédias.
-  - Gestion sécurisée des téléchargements et suppression automatique des fichiers temporaires après téléchargement.
+- **Fonctionnalitï¿½s clï¿½s** :
+  - API REST pour le tï¿½lï¿½chargement de vidï¿½os et d'audio.
+  - Utilisation de `yt-dlp` pour l'extraction et le traitement des fichiers multimï¿½dias.
+  - Gestion sï¿½curisï¿½e des tï¿½lï¿½chargements et suppression automatique des fichiers temporaires aprï¿½s tï¿½lï¿½chargement.
 
 ### Frontend
 - **Technologies** : React, TypeScript
-- **Fonctionnalités clés** :
+- **Fonctionnalitï¿½s clï¿½s** :
   - Interface utilisateur simple et intuitive.
-  - Gestion du format de téléchargement (vidéo ou audio).
-  - Affichage des erreurs et des statuts de chargement en temps réel.
+  - Gestion du format de tï¿½lï¿½chargement (vidï¿½o ou audio).
+  - Affichage des erreurs et des statuts de chargement en temps rï¿½el.
 
 ---
 
-## Installation et exécution
+## Installation et exï¿½cution
 
-### Prérequis
+### Prï¿½requis
 
 - **Backend** :
-  - Python 3.9 ou supérieur
-  - Pip pour gérer les dépendances Python
+  - Python 3.9 ou supï¿½rieur
+  - Pip pour gï¿½rer les dï¿½pendances Python
 - **Frontend** :
-  - Node.js (16.x ou supérieur)
-  - npm ou yarn pour gérer les dépendances JavaScript
+  - Node.js (16.x ou supï¿½rieur)
+  - npm ou yarn pour gï¿½rer les dï¿½pendances JavaScript
 
-### Étapes d'installation
+### ï¿½tapes d'installation
 
-1. Clonez ce dépôt :
+1. Clonez ce dï¿½pï¿½t :
    ```bash
    git clone https://github.com/MOHAMED-EL-HADDIOUI/YT-Downloader.git
    cd YT-Downloader
    ```
 
 2. **Backend** :
-   - Naviguez dans le répertoire `Backend` :
+   - Naviguez dans le rï¿½pertoire `Backend` :
      ```bash
      cd Backend
      ```
-   - Installez les dépendances Python :
+   - Installez les dï¿½pendances Python :
      ```bash
      pip install -r requirements.txt
      ```
@@ -71,20 +71,21 @@ Le projet est divisé en deux principaux répertoires :
      ```
 
 3. **Frontend** :
-   - Naviguez dans le répertoire `Frontend` :
-     ```bash
-     cd Frontend
-     ```
-   - Installez les dépendances JavaScript :
+   - Clonez ce dï¿½pï¿½t :
+   ```bash
+   git clone https://github.com/MOHAMED-EL-HADDIOUI/YT-Downloader-Backend.git
+   cd YT-Downloader-Backend
+   ```
+   - Installez les dï¿½pendances JavaScript :
      ```bash
      npm install
      ```
    - Lancez l'application React :
      ```bash
-     npm start
+     npm run dev
      ```
 
-4. Ouvrez votre navigateur et accédez à :
+4. Ouvrez votre navigateur et accï¿½dez ï¿½ :
    ```
    http://localhost:5173
    ```
@@ -96,14 +97,14 @@ Le projet est divisé en deux principaux répertoires :
 ### Endpoints disponibles
 
 - **POST** `/download/video`
-  - **Description** : Télécharge une vidéo à partir de YouTube.
-  - **Paramètres** :
+  - **Description** : Tï¿½lï¿½charge une vidï¿½o ï¿½ partir de YouTube.
+  - **Paramï¿½tres** :
     - `url` : URL YouTube (obligatoire).
-    - `format_id` : Format spécifique (facultatif).
+    - `format_id` : Format spï¿½cifique (facultatif).
 - **POST** `/download/mp3`
-  - **Description** : Télécharge l'audio (MP3) à partir de YouTube.
-  - **Paramètres** :
+  - **Description** : Tï¿½lï¿½charge l'audio (MP3) ï¿½ partir de YouTube.
+  - **Paramï¿½tres** :
     - `url` : URL YouTube (obligatoire).
-    - `format_id` : Format spécifique (facultatif).
+    - `format_id` : Format spï¿½cifique (facultatif).
 
 ---
