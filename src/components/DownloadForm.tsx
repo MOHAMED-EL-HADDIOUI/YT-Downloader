@@ -14,14 +14,25 @@ export function DownloadForm() {
     setLoading(true);
     setError(null);
 
-    try {
-      const formData = new FormData();
-      formData.append('url', url);
-      formData.append('format', format);
+    // Vérifier si l'URL est valide
+    if (!url || !/^https?:\/\/(?:www\.)?youtube\.com\/(?:watch\?v=|.+\/)([A-Za-z0-9_-]{11})/.test(url)) {
+      setError('L\'URL YouTube est invalide.');
+      setLoading(false);
+      return;
+    }
 
-      const response = await fetch('http://localhost:5000/api/download', {
+    try {
+      const payload = {
+        url: url,
+        format: format,
+      };
+
+      const response = await fetch('https://yt-downloader-backend-b6b1.onrender.com/api/download', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json', // Définir l'en-tête Content-Type comme application/json
+        },
+        body: JSON.stringify(payload), // Convertir l'objet en chaîne JSON
       });
 
       if (!response.ok) {
@@ -53,60 +64,60 @@ export function DownloadForm() {
   };
 
   return (
-      <div className="bg-white rounded-lg shadow-xl p-6 max-w-2xl w-full">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="url" className="block text-sm font-medium text-gray-700">
-              YouTube URL
-            </label>
-            <input
-                type="url"
-                id="url"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="Collez votre URL YouTube ici"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 p-3 bg-gray-50"
-                required
-            />
-          </div>
+    <div className="bg-white rounded-lg shadow-xl p-6 max-w-2xl w-full">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="url" className="block text-sm font-medium text-gray-700">
+            URL YouTube
+          </label>
+          <input
+            type="url"
+            id="url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="Collez votre URL YouTube ici"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 p-3 bg-gray-50"
+            required
+          />
+        </div>
 
-          <div className="flex space-x-4">
-            <Button
-                type="button"
-                variant={format === 'video' ? 'primary' : 'secondary'}
-                className="flex-1"
-                onClick={() => setFormat('video')}
-            >
-              <Video className="h-5 w-5" />
-              <span>Vidéo</span>
-            </Button>
-
-            <Button
-                type="button"
-                variant={format === 'audio' ? 'primary' : 'secondary'}
-                className="flex-1"
-                onClick={() => setFormat('audio')}
-            >
-              <Music className="h-5 w-5" />
-              <span>Audio</span>
-            </Button>
-          </div>
-
+        <div className="flex space-x-4">
           <Button
-              type="submit"
-              className="w-full flex items-center justify-center gap-2"
-              disabled={loading}
+            type="button"
+            variant={format === 'video' ? 'primary' : 'secondary'}
+            className="flex-1"
+            onClick={() => setFormat('video')}
           >
-            <Download className="h-5 w-5" />
-            <span>{loading ? 'Téléchargement...' : 'Télécharger'}</span>
+            <Video className="h-5 w-5" />
+            <span>Vidéo</span>
           </Button>
 
-          {error && (
-              <p className="text-red-500 text-sm text-center mt-2">
-                {error}
-              </p>
-          )}
-        </form>
-      </div>
+          <Button
+            type="button"
+            variant={format === 'audio' ? 'primary' : 'secondary'}
+            className="flex-1"
+            onClick={() => setFormat('audio')}
+          >
+            <Music className="h-5 w-5" />
+            <span>Audio</span>
+          </Button>
+        </div>
+
+        <Button
+          type="submit"
+          className="w-full flex items-center justify-center gap-2"
+          disabled={loading}
+        >
+          <Download className="h-5 w-5" />
+          <span>{loading ? 'Téléchargement...' : 'Télécharger'}</span>
+        </Button>
+
+        {error && (
+          <p className="text-red-500 text-sm text-center mt-2">
+            {error}
+          </p>
+        )}
+      </form>
+    </div>
   );
 }
