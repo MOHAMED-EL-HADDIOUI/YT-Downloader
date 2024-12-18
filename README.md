@@ -97,14 +97,14 @@ Le projet est divis� en deux principaux r�pertoires :
 ### Endpoints disponibles
 
 - **POST** `/download/video`
-  - **Description** : T�l�charge une vid�o � partir de YouTube.
+  - **Description** : Telecharge une vid�o � partir de YouTube.
   - **Param�tres** :
     - `url` : URL YouTube (obligatoire).
     - `format_id` : Format sp�cifique (facultatif).
 - **POST** `/download/mp3`
-  - **Description** : T�l�charge l'audio (MP3) � partir de YouTube.
+  - **Description** : Telecharge l'audio (MP3) � partir de YouTube.
   - **Param�tres** :
     - `url` : URL YouTube (obligatoire).
-    - `format_id` : Format sp�cifique (facultatif).
+    - `format_id` : Format specifique (facultatif).
 
 ---

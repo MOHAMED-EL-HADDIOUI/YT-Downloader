@@ -13,51 +13,56 @@ export function DownloadForm() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
+    
     // Vérifier si l'URL est valide
     if (!url || !/^https?:\/\/(?:www\.)?youtube\.com\/(?:watch\?v=|.+\/)([A-Za-z0-9_-]{11})/.test(url)) {
       setError('L\'URL YouTube est invalide.');
       setLoading(false);
       return;
     }
-
+    
     try {
       const payload = {
         url: url,
         format: format,
       };
-
-      const response = await fetch('https://yt-downloader-backend-b6b1.onrender.com/api/download', {
+      
+      console.log('Payload envoyé :', payload);
+      
+      const response = await fetch('/api/download', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', // Définir l'en-tête Content-Type comme application/json
-        },
-        body: JSON.stringify(payload), // Convertir l'objet en chaîne JSON
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
-
+  
+      console.log('Statut de la réponse :', response.status);
+      
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Une erreur est survenue');
+        // Essayez de lire le corps de la réponse pour plus de détails
+        const errorText = await response.text();
+        console.error('Réponse d\'erreur :', errorText);
+        throw new Error(errorText || 'Une erreur est survenue');
       }
-
+  
       const blob = await response.blob();
       const URL = window.URL || (window as any).webkitURL;
       const fileURL = URL.createObjectURL(blob);
-
       const a = document.createElement('a');
       a.href = fileURL;
+      
       const filename = response.headers.get('content-disposition')
-              ?.split('filename=')[1]
-              ?.replace(/"/g, '')
-          || `youtube-${format}-${Date.now()}.${format === 'video' ? 'mp4' : 'mp3'}`;
+        ?.split('filename=')[1]
+        ?.replace(/"/g, '')
+        || `youtube-${format}-${Date.now()}.${format === 'video' ? 'mp4' : 'mp3'}`;
+      
       a.download = filename;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(fileURL);
-
     } catch (err: any) {
-      setError(err.message);
+      console.error('Erreur complète :', err);
+      setError(err.message || 'Une erreur inattendue s\'est produite');
     } finally {
       setLoading(false);
     }
