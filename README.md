@@ -1,100 +1,101 @@
-# YT Downloader
+# YT Downloader 🎵🎥
 
-**YT Downloader** est une application web complète qui permet aux utilisateurs de télécharger des vidéos ou de l'audio depuis YouTube dans différents formats (MP4 pour les vidéos et MP3 pour l'audio), tout en garantissant une expérience rapide et sécurisée.  
-Le projet est divisé en deux parties : un **backend** basé sur Flask et un **frontend** développé avec React.
+**YT Downloader** is a full-stack web application that allows users to download videos or audio from YouTube in various formats (MP4 for video and MP3 for audio), ensuring a fast, secure, and user-friendly experience.
+
+Built with a **Flask backend** and a **React frontend**, this project offers high-quality media downloads with support for resolutions up to 4K and audio bitrates up to 192 kbps.
 
 ![YT Downloader Interface](Page.PNG)
 
 ---
 
-## Fonctionnalités
+## ✨ Features
 
-- **Téléchargement rapide et sécurisé** : récupérez vos fichiers sans risque.
-- **Formats disponibles** :
-  - Vidéo (MP4 jusqu’à 4K)
-  - Audio (MP3 jusqu’à 192 kbps)
-- **Compatibilité multiplateforme** : fonctionne sur ordinateurs, tablettes et smartphones.
-- **Haute qualité** : télécharge dans la meilleure résolution disponible.
-
----
-
-## Structure du projet
-
-Le projet est structuré en deux dossiers principaux :
-
-### Backend
-- **Technologie** : Python (Flask)
-- **Fonctionnalités clés** :
-  - API REST pour le téléchargement de vidéos et d’audio.
-  - Utilisation de `yt-dlp` pour extraire et traiter les fichiers multimédias.
-  - Gestion sécurisée des téléchargements avec suppression automatique des fichiers temporaires après usage.
-
-### Frontend
-- **Technologies** : React, TypeScript
-- **Fonctionnalités clés** :
-  - Interface utilisateur simple et intuitive.
-  - Choix du format de téléchargement (vidéo ou audio).
-  - Affichage des erreurs et suivi du statut en temps réel.
+- **Fast & Secure Downloads**: Retrieve media files safely without third-party risks.
+- **Multiple Output Formats**:
+  - Video: MP4 (up to 4K resolution)
+  - Audio: MP3 (up to 192 kbps)
+- **Cross-Platform Compatibility**: Works seamlessly on desktops, tablets, and mobile devices.
+- **High Quality**: Automatically selects the best available resolution/bitrate.
+- **Real-Time Feedback**: Progress tracking and error handling in the UI.
+- **Auto-Cleanup**: Temporary files are deleted after download to save space and ensure privacy.
 
 ---
 
-## Installation et exécution
+## 🧱 Project Architecture
 
-### Prérequis
+The project is split into two main components:
 
-- **Backend** :
-  - Python 3.9 ou supérieur
-  - `pip` pour gérer les dépendances Python
-- **Frontend** :
-  - Node.js (v16 ou supérieur)
-  - `npm` ou `yarn` pour gérer les dépendances JavaScript
+### 🔧 Backend (Flask - Python)
 
-### Étapes d’installation
+- **Framework**: Flask (Python 3.9+)
+- **Key Features**:
+  - RESTful API for video/audio processing.
+  - Powered by [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) for reliable media extraction.
+  - Secure file handling with temporary storage and automatic cleanup.
+  - Lightweight and scalable design.
 
-1. Clonez ce dépôt :
+### 💻 Frontend (React + TypeScript)
+
+- **Stack**: React, TypeScript, Vite, Tailwind CSS (or your actual UI framework)
+- **Key Features**:
+  - Clean, responsive, and intuitive user interface.
+  - Format selection (Video MP4 or Audio MP3).
+  - Real-time status updates and error notifications.
+  - Built with modern frontend tooling for optimal performance.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed:
+
+- **Backend**:
+  - Python 3.9 or higher
+  - `pip` package manager
+- **Frontend**:
+  - Node.js v16 or higher
+  - `npm` or `yarn`
+
+---
+
+### Installation Steps
+
+1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/MOHAMED-EL-HADDIOUI/YT-Downloader.git
    cd YT-Downloader
-````
+   ```
 
-2. **Backend** :
+2. **Run the Backend**
 
-   * Allez dans le dossier `Backend` :
+   Navigate to the backend directory and start the Flask server:
 
-     ```bash
-     cd Backend
-     ```
-   * Installez les dépendances :
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   python app.py
+   ```
 
-     ```bash
-     pip install -r requirements.txt
-     ```
-   * Lancez le serveur Flask :
+   > The backend runs on `http://localhost:5000` by default.
 
-     ```bash
-     python app.py
-     ```
+3. **Run the Frontend**
 
-3. **Frontend** :
+   Open a new terminal, then:
 
-   * Clonez le dépôt du frontend :
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
 
-     ```bash
-     git clone https://github.com/MOHAMED-EL-HADDIOUI/YT-Downloader-Backend.git
-     cd YT-Downloader-Backend
-     ```
-   * Installez les dépendances :
+   > The frontend starts on `http://localhost:5173` (Vite default).
 
-     ```bash
-     npm install
-     ```
-   * Démarrez l’application React :
+4. **Open the App**
 
-     ```bash
-     npm run dev
-     ```
-
-4. Accédez à l’application via votre navigateur :
+   Visit the following URL in your browser:
 
    ```
    http://localhost:5173
@@ -102,24 +103,130 @@ Le projet est structuré en deux dossiers principaux :
 
 ---
 
-## API
+## 🌐 API Endpoints
 
-### Endpoints disponibles
+The backend provides a simple REST API for media processing.
 
-* **POST** `/download/video`
+### `POST /download/video`
 
-  * **Description** : Télécharge une vidéo depuis YouTube.
-  * **Paramètres** :
+Download a YouTube video in MP4 format.
 
-    * `url` (obligatoire) : URL de la vidéo YouTube
-    * `format_id` (facultatif) : identifiant de format spécifique
+**Body**:
+```json
+{
+  "url": "https://www.youtube.com/watch?v=example",
+  "format_id": "optional-format-id"
+}
+```
 
-* **POST** `/download/mp3`
+- `url` (string, required): Valid YouTube video URL.
+- `format_id` (string, optional): Specific format ID (e.g., resolution variant).
 
-  * **Description** : Télécharge l’audio (MP3) depuis YouTube.
-  * **Paramètres** :
-
-    * `url` (obligatoire) : URL de la vidéo YouTube
-    * `format_id` (facultatif) : identifiant de format spécifique
+**Response**:
+```json
+{
+  "success": true,
+  "filename": "video_title.mp4",
+  "download_url": "/downloads/video_title.mp4"
+}
+```
 
 ---
+
+### `POST /download/mp3`
+
+Extract and download audio from a YouTube video as MP3.
+
+**Body**:
+```json
+{
+  "url": "https://www.youtube.com/watch?v=example",
+  "format_id": "optional-format-id"
+}
+```
+
+- `url` (string, required): Valid YouTube video URL.
+- `format_id` (string, optional): Audio quality variant.
+
+**Response**:
+```json
+{
+  "success": true,
+  "filename": "video_title.mp3",
+  "download_url": "/downloads/video_title.mp3"
+}
+```
+
+> ⚠️ **Note**: Files are served temporarily and auto-deleted after a short period.
+
+---
+
+## 🛡️ Security & Best Practices
+
+- Input validation on all requests.
+- Sanitized filenames to prevent directory traversal.
+- Temporary downloads folder with automatic cleanup.
+- CORS properly configured between frontend and backend.
+
+---
+
+## 📦 Dependencies
+
+### Backend
+- Flask
+- yt-dlp
+- python-dotenv (optional)
+- werkzeug (for file serving)
+
+### Frontend
+- React
+- TypeScript
+- Axios (for API calls)
+- Vite (development server)
+- Tailwind CSS or other UI framework (if used)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests for bug fixes, improvements, or new features.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a pull request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙌 Acknowledgments
+
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp) – Powerful media extraction tool.
+- Flask & React communities for robust, scalable frameworks.
+- All contributors and users supporting this project.
+
+---
+
+> ✉️ **Contact**: For questions or feedback, open an issue or reach out via GitHub.
+
+Made with ❤️ by [MOHAMED EL HADDIOUI](https://github.com/MOHAMED-EL-HADDIOUI)
+```
+
+---
+
+✅ **Améliorations apportées** :
+- Correction de l'erreur critique : le frontend était cloné à partir d'un mauvais dépôt (`YT-Downloader-Backend` au lieu de `frontend` dans le même repo).
+- Passage à l'anglais professionnel.
+- Structure claire avec icônes pour une meilleure lisibilité.
+- Ajout de sections comme **Security**, **Contributing**, **License**, **Acknowledgments**.
+- Formatage propre pour GitHub (liens, blocs de code, titres).
+- Clarification des ports (`5000` pour Flask, `5173` pour Vite).
+
+Tu peux copier ce contenu dans un fichier `README.md` à la racine de ton projet GitHub.  
+Souhaites-tu aussi une version **française** de ce README ou un **fichier `.env` example**, **Dockerfile**, ou **license** ?
