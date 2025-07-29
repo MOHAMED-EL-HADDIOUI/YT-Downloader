@@ -217,14 +217,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Made with ❤️ by [MOHAMED EL HADDIOUI](https://github.com/MOHAMED-EL-HADDIOUI)
 ```
-
----
-
-✅ **Améliorations apportées** :
-- Correction de l'erreur critique : le frontend était cloné à partir d'un mauvais dépôt (`YT-Downloader-Backend` au lieu de `frontend` dans le même repo).
-- Passage à l'anglais professionnel.
-- Structure claire avec icônes pour une meilleure lisibilité.
-- Ajout de sections comme **Security**, **Contributing**, **License**, **Acknowledgments**.
-- Formatage propre pour GitHub (liens, blocs de code, titres).
-- Clarification des ports (`5000` pour Flask, `5173` pour Vite).
-
