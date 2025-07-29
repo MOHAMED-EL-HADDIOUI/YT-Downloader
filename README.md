@@ -228,5 +228,3 @@ Made with ❤️ by [MOHAMED EL HADDIOUI](https://github.com/MOHAMED-EL-HADDIOUI
 - Formatage propre pour GitHub (liens, blocs de code, titres).
 - Clarification des ports (`5000` pour Flask, `5173` pour Vite).
 
-Tu peux copier ce contenu dans un fichier `README.md` à la racine de ton projet GitHub.  
-Souhaites-tu aussi une version **française** de ce README ou un **fichier `.env` example**, **Dockerfile**, ou **license** ?
